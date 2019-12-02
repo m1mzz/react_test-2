@@ -1,7 +1,6 @@
-const GET_WEATHER = 'GET_WEATHER'
-const SET_WEATHER = 'SET_WEATHER'
+import { GET_WEATHER, SET_WEATHER } from './actionsTypes'
 
-export function actionGetWether () {
+export function getWether () {
   return {
     type: GET_WEATHER
   }

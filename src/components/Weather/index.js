@@ -1,7 +1,7 @@
 import React from 'react';
 import Select from 'react-select';
 import { connect } from 'react-redux';
-import { actionGetWether } from '../../store/actions'
+import actions from '../../store/actions'
  
 const options = [
   { value: 'chocolate', label: 'Chocolate' },
@@ -19,7 +19,7 @@ class Weather extends React.Component {
   };
   render() {
     const { selectedOption } = this.state;
-    const { getWether } = this.props;
+    const { getWether, fetchedData } = this.props;
  
     return (
       <>
@@ -28,18 +28,21 @@ class Weather extends React.Component {
           onChange={this.handleChange}
           options={options}
         />
+        <pre>{ JSON.stringify(fetchedData) }</pre>
         <button onClick={getWether}>get weather</button>
       </>
     );
   }
 }
+const mapStateToProps = (state) => ({ fetchedData: state.weather})
+
 const mapDispatchToProps = dispatch => {
   return {
-    getWether: () => dispatch(actionGetWether())
+    getWether: () => dispatch(actions.getWether())
   }
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Weather)
