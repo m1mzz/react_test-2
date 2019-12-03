@@ -1,4 +1,4 @@
-import { GET_WEATHER, SET_WEATHER } from './actionsTypes'
+import { GET_WEATHER, SET_WEATHER, SET_WEATHER_LOADING, SET_WEATHER_ERROR } from './actionsTypes'
 
 export function getWether () {
   return {
@@ -9,6 +9,19 @@ export function getWether () {
 export function setWeather (data) {
   return {
     type: SET_WEATHER,
+    payload: data
+  }
+}
+
+export function setWeatherLoading () {
+  return {
+    type: SET_WEATHER_LOADING
+  }
+}
+
+export function setWeatherError (data) {
+  return {
+    type: SET_WEATHER_ERROR,
     payload: data
   }
 }

@@ -1,20 +1,37 @@
 import actions from './actions'
 import { GET_WEATHER } from './actions/actionsTypes'
+import { appid, baseUrl } from '~/config/api'
+import drawChart from '~/helpers/drawChart'
 
+
+const url = new URL(baseUrl)
 
 const fetchWeather = store => next => action => {
-  console.log('dispatching', action)
   if (action.type !== GET_WEATHER) {
     return next(action)
   }
+  store.dispatch(actions.setWeatherLoading())
 
-  fetch('https://openweathermap.org/data/2.5/forecast?q=M%C3%BCnchen,DE&appid=b6907d289e10d714a6e88b30761fae22')
+  const { select } = store.getState()
+  const country = select.selectedCounrty.value
+  const temperature = select.selectedTemperature.value
+  const getParams = {
+    appid,
+    q: country,
+    units: temperature
+  }
+  url.search = new URLSearchParams(getParams).toString();
+
+  fetch(url)
     .then(result => {
       result.json().then((data => {
         store.dispatch(actions.setWeather(data))
+        drawChart(data, temperature)
         next(action)
       }))
-      
+    })
+    .catch(error => {
+      store.dispatch(actions.setWeatherError(error.message))
     })
 }
 

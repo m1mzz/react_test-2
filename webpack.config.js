@@ -63,7 +63,12 @@ let conf = {
                 ]
             }
         ]
-    }
+    },
+    resolve: {
+        alias: {
+            '~': path.resolve(__dirname, 'src'),
+        }
+    },
 };
 
 module.exports = conf;
