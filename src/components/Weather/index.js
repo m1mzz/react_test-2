@@ -7,10 +7,7 @@ import temperatureValue from '~/config/temperature'
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 import Accordion from 'react-bootstrap/Accordion';
-import('chart.js').then(({ default: Chart }) => {
-  window.Chart = Chart
-})
-// import Chart from 'chart.js';
+import WeatherDraw from './WeatherDraw'
  
 class Weather extends React.Component {
   render() {
@@ -53,7 +50,7 @@ class Weather extends React.Component {
                               </Accordion>
                             </Alert> }
 
-        <canvas className="d-block" id="myChart"></canvas>
+        <WeatherDraw />
       </div>
     );
   }

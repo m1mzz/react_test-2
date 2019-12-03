@@ -6,7 +6,7 @@ const tempTransform = {
 
 let chartWeather = null
 
-const drawChart = (weather, temperatureValue) => {
+const drawChart = (Chart, domElement, weather, temperatureValue) => {
   const tempUnits = tempTransform[temperatureValue]
   const dates = []
   const temps = []
@@ -16,7 +16,6 @@ const drawChart = (weather, temperatureValue) => {
     temps.push(list.main.temp)
     weatherArr.push(list.weather)
   });
-  const ctx = document.getElementById('myChart');
   const config = {
     type: "line",
     data: {
@@ -85,7 +84,7 @@ const drawChart = (weather, temperatureValue) => {
   if (chartWeather) {
     chartWeather.destroy()
   }
-  chartWeather = new Chart(ctx, config)
+  chartWeather = new Chart(domElement, config)
 };
 
 export default drawChart;

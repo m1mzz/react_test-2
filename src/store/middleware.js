@@ -1,7 +1,6 @@
 import actions from './actions'
 import { GET_WEATHER } from './actions/actionsTypes'
 import { appid, baseUrl } from '~/config/api'
-import drawChart from '~/helpers/drawChart'
 
 
 const url = new URL(baseUrl)
@@ -26,7 +25,6 @@ const fetchWeather = store => next => action => {
     .then(result => {
       result.json().then((data => {
         store.dispatch(actions.setWeather(data))
-        drawChart(data, temperature)
         next(action)
       }))
     })
