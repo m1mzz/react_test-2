@@ -12,7 +12,7 @@ function WeatherDraw(props) {
   const { weather } = props.weather
   useEffect(function() {
     if (weather && ChartJs) {
-      watherDrawFn(ChartJs, canvas.current, weather, props.selectedTemperature)
+      watherDrawFn(ChartJs, canvas.current, weather, props.selectedTemperature.value)
     }
   }, [weather]);
 
