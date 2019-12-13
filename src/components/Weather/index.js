@@ -22,14 +22,16 @@ class Weather extends React.Component {
     return (
       <div className="container">
         <div className="row">
-          <Select value={selectedCounrty}
-                  onChange={(val) => setSelect('selectedCounrty', val)}
-                  options={cities}
-                  className="col-sm-6 mb-5" />
-          <Select value={selectedTemperature}
-                  onChange={(val) => setSelect('selectedTemperature', val)}
-                  options={temperatureValue}
-                  className="col-sm-6 mb-5" />
+          <div className="col-sm-6 mb-5">
+            <Select value={selectedCounrty}
+                    onChange={(val) => setSelect('selectedCounrty', val)}
+                    options={cities} />
+          </div>
+          <div className="col-sm-6 mb-5">
+            <Select value={selectedTemperature}
+                    onChange={(val) => setSelect('selectedTemperature', val)}
+                    options={temperatureValue} />
+          </div>
         </div>
         
         <Button variant="primary"
