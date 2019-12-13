@@ -14,16 +14,16 @@ const defaultState = {
 function reducers(state = defaultState, action) {
   switch (action.type) {
     case GET_WEATHER:
-      return { ...state, isLoading: false }
+      return state
 
     case SET_WEATHER:
-      return { ...state, weather: action.payload }
+      return { ...state, weather: action.payload, isLoading: false };
 
     case SET_WEATHER_LOADING:
-      return { ...state, isLoading: true }
+      return { ...state, isLoading: true };
 
     case SET_WEATHER_ERROR:
-      return { ...state, error: action.payload, isLoading: false }
+      return { ...state, error: action.payload, isLoading: false };
       
     default:
       return state

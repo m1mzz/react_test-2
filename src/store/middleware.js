@@ -1,14 +1,16 @@
 import actions from './actions'
-import { GET_WEATHER } from './actions/actionsTypes'
+import { GET_WEATHER, SET_SELECT } from './actions/actionsTypes'
 import { appid, baseUrl } from '~/config/api'
 
 
 const url = new URL(baseUrl)
 
 const fetchWeather = store => next => action => {
-  if (action.type !== GET_WEATHER) {
+  if ( ![GET_WEATHER, SET_SELECT].includes(action.type)) {
     return next(action)
   }
+  next(action)
+  
   store.dispatch(actions.setWeatherLoading())
 
   const { select } = store.getState()
@@ -25,7 +27,6 @@ const fetchWeather = store => next => action => {
     .then(result => {
       result.json().then((data => {
         store.dispatch(actions.setWeather(data))
-        next(action)
       }))
     })
     .catch(error => {
